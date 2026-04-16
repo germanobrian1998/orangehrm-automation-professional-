@@ -1,14 +1,19 @@
 name: Performance Tests
+
 on:
   schedule:
     - cron: '0 3 * * 0'
+  workflow_dispatch:
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '18'
-      - run: npm ci && npx playwright install --with-deps
-      - run: npm test 2>/dev/null || echo "OK"
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npx playwright install --with-deps
+      - run: npm run test:performance

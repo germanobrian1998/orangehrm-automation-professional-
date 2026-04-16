@@ -1,4 +1,4 @@
 #!/bin/bash
-npm install
-npx playwright install --with-deps
+set -e
+npm ci
 npm test
