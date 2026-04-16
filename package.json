@@ -1,1 +1,41 @@
-{\n  "name": "orangehrm-automation-professional-",\n  "version": "1.0.0",\n  "description": "Automation testing for OrangeHRM using Playwright and TypeScript.",\n  "main": "index.js",\n  "scripts": {\n    "test": "playwright test",\n    "build": "tsc",\n    "start": "node dist/index.js"\n  },\n  "author": "germanobrian1998",\n  "license": "MIT",\n  "devDependencies": {\n    "@playwright/test": "latest",\n    "typescript": "latest",\n    "ts-node": "latest",\n    "eslint": "latest",\n    "prettier": "latest"\n  },\n  "dependencies": {\n    "@types/node": "latest"\n  }\n}
+{
+  "name": "orangehrm-automation-professional-",
+  "version": "1.0.0",
+  "description": "Professional QA automation framework for OrangeHRM using Playwright and TypeScript.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:smoke": "playwright test tests/smoke",
+    "test:integration": "playwright test tests/integration",
+    "test:regression": "playwright test tests/regression",
+    "test:performance": "playwright test tests/performance",
+    "test:ui": "playwright test tests",
+    "test:debug": "PWDEBUG=1 playwright test",
+    "test:headed": "playwright test --headed",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "docker:build": "docker build -t orangehrm-automation .",
+    "docker:run": "docker run --rm orangehrm-automation",
+    "docker:run:dev": "docker compose -f docker-compose.dev.yml up --build"
+  },
+  "author": "germanobrian1998",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.53.0",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^10.1.2",
+    "prettier": "^3.5.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@types/node": "^22.15.3"
+  }
+}

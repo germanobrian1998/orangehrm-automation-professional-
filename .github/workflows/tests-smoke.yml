@@ -1,14 +1,28 @@
 name: Smoke Tests
-on: [push, pull_request]
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
+          cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps
-      - run: npm test 2>/dev/null || echo "OK"
+      - run: npm run test:smoke
+      - name: Upload Smoke report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-smoke
+          path: |
+            playwright-report/
+            test-results/
