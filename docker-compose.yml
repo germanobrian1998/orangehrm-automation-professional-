@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  tests:
+    build: .
+    environment:
+      BASE_URL: http://localhost:8080
+      CI: 'true'
+    volumes:
+      - ./test-results:/app/test-results
